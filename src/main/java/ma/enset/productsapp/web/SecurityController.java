@@ -1,6 +1,8 @@
 package ma.enset.productsapp.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.ServletException;

@@ -6,18 +6,23 @@ import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @AllArgsConstructor
 public class SupplierController {
-
     private KeycloakRestTemplate keycloakRestTemplate;
+
     @GetMapping("/suppliers")
     public String suppliers(Model model){
         PagedModel<Supplier> pagedModel = keycloakRestTemplate.getForObject("http://localhost:8083/suppliers", PagedModel.class);
         model.addAttribute("suppliers", pagedModel);
         return "suppliers";
     }
-
+    @ExceptionHandler(Exception.class)
+    public String handleException(Exception e,  Model model){
+        model.addAttribute("errorMessage","You're not authorized to access this page");
+        return "errors";
+    }
 }
