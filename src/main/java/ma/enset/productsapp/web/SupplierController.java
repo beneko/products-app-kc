@@ -20,6 +20,7 @@ public class SupplierController {
         model.addAttribute("suppliers", pagedModel);
         return "suppliers";
     }
+
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e,  Model model){
         model.addAttribute("errorMessage","You're not authorized to access this page");
