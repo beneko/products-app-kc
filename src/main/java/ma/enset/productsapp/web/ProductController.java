@@ -1,14 +1,14 @@
 package ma.enset.productsapp.web;
 
+import lombok.AllArgsConstructor;
 import ma.enset.productsapp.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@AllArgsConstructor
 public class ProductController{
-    @Autowired
     private ProductRepository productRepository;
 
     @GetMapping("/")
@@ -19,10 +19,6 @@ public class ProductController{
     public String products(Model model){
         model.addAttribute("products",productRepository.findAll());
         return "products";
-    }
-    @GetMapping("/suppliers")
-    public String suppliers(){
-        return "suppliers";
     }
 
 }
